@@ -1,0 +1,49 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+input {
+  background-color: rgba(69, 90, 100, 1);
+}
+
+label {
+  color: rgb(255, 255, 255);
+}
+
+.add {
+  background-color: rgba(254, 211, 106, 1);
+}
+
+.add:hover{
+  background-color: rgba(254, 212, 106, 0.953)!important;
+}
+
+.expired {
+  background-color: red; /* Optional: Light red background */
+  font-weight: bold; /* Optional: Make text bold */
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 33px;
+}
+
+.show {
+  position: absolute;
+  left: 91.5%;
+  background-color: rgba(254, 211, 106, 1);
+  font-weight: 700;
+}
+
+.navbar {
+  background-color: rgba(69, 90, 100, 1) !important;
+  border-radius: 11px;
+  box-shadow: 2px 2px 4px 0px #ffe23466;
+}
+.navbar a {
+  color: white;
+}
+
+.collapse{
+  justify-content: space-around;
+}

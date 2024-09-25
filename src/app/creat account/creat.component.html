@@ -1,0 +1,135 @@
+<div class="parent">
+  <div
+    class="container"
+    [ngClass]="isSignDivVisiable ? 'active' : ''"
+    id="container"
+  >
+    <div class="form-container sign-up">
+      <form [formGroup]="signUpForm">
+        <h1 style="text-align: center ;color:white">Create Account</h1>
+        <input type="text" formControlName="name" placeholder="First name" />
+        <div
+          class="pass"
+          *ngIf="
+            signUpForm.get('name')?.hasError('required') && signUpSubmitted
+          "
+        >
+          First name is required
+        </div>
+        <input type="text" formControlName="lastName" placeholder="Last name" />
+        <div
+          class="pass"
+          *ngIf="
+            signUpForm.get('lastName')?.hasError('required') && signUpSubmitted
+          "
+        >
+          Last name is required
+        </div>
+        <input type="email" formControlName="email" placeholder="Email" />
+
+        <div
+          class="pass"
+          *ngIf="
+            signUpForm.get('email')?.hasError('required') && signUpSubmitted
+          "
+        >
+          Email is required
+        </div>
+        <div class="pass" *ngIf="signUpForm.get('email')?.hasError('email')">
+          Invalid email address
+        </div>
+
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+
+        <div
+          class="pass"
+          *ngIf="
+            signUpForm.get('password')?.hasError('uppercase') ||
+            signUpForm.get('password')?.hasError('minlength') ||
+            signUpForm.get('password')?.hasError('lowercase') ||
+            signUpForm.get('password')?.hasError('number') ||
+            signUpForm.get('password')?.hasError('specialChar')
+          "
+        >
+          Password must be at least 8 characters long, with one uppercase, one
+          lowercase, and one special character.
+        </div>
+
+        <div
+          class="pass"
+          *ngIf="
+            signUpForm.get('password')?.hasError('required') && signUpSubmitted
+          "
+        >
+          Password is required
+        </div>
+        <div class="password-input-container"></div>
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Confirm Password"
+        />
+
+        <span class="show-password" (click)="togglePasswordVisibility()">
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-eye': !showPassword,
+              'fa-eye-slash': showPassword
+            }"
+          ></i>
+        </span>
+
+        <div class="pass" *ngIf="signUpForm.hasError('mismatch')">
+          Passwords do not match
+        </div>
+        <button (click)="onRegister()">Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in">
+      <form [formGroup]="loginForm">
+        <h1 style="color:white">Sign In</h1>
+        <input type="email" formControlName="email" placeholder="Email" />
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+
+        <button (click)="onLogin()">Sign In</button>
+      </form>
+    </div>
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h1>Welcome Back!</h1>
+          <p>Enter your personal details to use all of site features</p>
+          <button
+            type="button"
+            class="hidden"
+            id="login"
+            (click)="isSignDivVisiable = false"
+          >
+            Sign In
+          </button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h1>Hello, Friend!</h1>
+          <p>Register with your personal details to use all of site features</p>
+          <button
+            type="button"
+            class="hidden"
+            id="register"
+            (click)="isSignDivVisiable = true"
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
