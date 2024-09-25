@@ -1,10 +1,12 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
+      <!-- Sell Product Card -->
       <div class="card shadow p-3 mb-5 rounded">
         <h2 class="card-title text-center text-white">Sell Product</h2>
         <hr class="bg-light" />
         <form>
+          <!-- Product Name Input -->
           <div class="form-group">
             <label for="productName" class="text-white">Product Name:</label>
             <input
@@ -15,6 +17,8 @@
               class="form-control form-control-lg"
             />
           </div>
+
+          <!-- Count Input -->
           <div class="form-group">
             <label for="count" class="text-white">Count:</label>
             <input
@@ -26,36 +30,58 @@
               class="form-control form-control-lg"
             />
           </div>
+
+          <!-- Add to Cart Button -->
           <button
             (click)="sellProduct()"
+            type="button"
             class="btn btn-primary btn-lg btn-block mt-3"
           >
             Add to Cart
           </button>
-          <h3 class="text-white mt-3">Price: ${{ totalPrice }}</h3>
+
+          <!-- Total Price for Selected Product -->
+          <!-- <h3 class="text-white mt-3">Price: ${{ totalPrice }}</h3> -->
+
+          <!-- Error Message (e.g. product expired, no stock, etc.) -->
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+          </div>
         </form>
       </div>
+
+      <!-- Cart Items Display -->
       <div *ngIf="cart.length > 0" class="mt-4">
         <div class="card shadow p-3 mb-5 rounded">
           <h4 class="card-title text-center text-white">Cart:</h4>
           <ul class="list-group list-group-flush">
+            <!-- Loop through cart items -->
             <li
               *ngFor="let item of cart"
               class="list-group-item d-flex justify-content-between align-items-center"
             >
-              <span class="font-weight-bold"
-                >{{ item.productName }} ({{ item.count }})</span
-              >
+              <span class="font-weight-bold">
+                {{ item.productName }} ({{ item.count }})
+              </span>
               <span style="color: white" class="text-muted">
                 Total: ${{ item.total }}
               </span>
             </li>
           </ul>
+
           <hr class="bg-light mt-3 mb-3" />
+
+          <!-- Total Price of All Cart Items -->
           <h4 class="text-white">
             Total Cart Price:
             <span class="text-primary">${{ getTotalCartPrice() }}</span>
           </h4>
+          <button
+            (click)="deleteAllProducts()"
+            class="btn btn-primary btn-lg btn-block mt-3"
+          >
+            Buy
+          </button>
         </div>
       </div>
     </div>
